@@ -15,6 +15,12 @@ class ItemsController < ApplicationController
   def show
   end
 
+  def search
+    unless params[:keyword] == ""
+      @items = Item.find_items(:keyword => params[:keyword])
+    end
+  end
+
   private
   def set_item
     @item = Item.find(params[:id])

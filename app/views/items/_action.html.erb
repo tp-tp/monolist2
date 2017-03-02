@@ -3,7 +3,7 @@
     <%= render 'items/unwant' , item: item %>
   <% else %>
     <%= render 'items/want' , item: item %>
-  <% end %> 
+  <% end %>
 
   <% if current_user.have? item %>
     <%= render 'items/unhave' , item: item %>

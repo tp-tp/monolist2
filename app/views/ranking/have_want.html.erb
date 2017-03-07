@@ -1,0 +1,31 @@
+<% content_for :head do %>
+  <title><%= controller.action_name.capitalize %>ランキング- monolist</title>
+  <meta name="description" content="<%= @description %>">
+<% end %>
+<div class="container">
+  <div class="container-inner inner-default clearfix">
+    <div class="col-xs-12">
+      <h1><%= controller.action_name.capitalize %> ランキング</h1>
+    </div>
+    <% @items.each.with_index(1) do |item,i| %>
+      <div class="item-box">
+        <div class="image">
+          <div class="img-wrap">
+            <%= image_tag(item.large_image , alt: item.title) %>
+          </div>
+        </div>
+        <div class="detail">
+          <p class="title">
+            <%= item.title %>
+          </p>
+        </div>
+        <div class="detail" style="height:inherit;">
+          <p class="title text-center">
+            <%= "#{i}位: #{controller.action_name.capitalize}数: #{item.send("#{controller.action_name}_users").count}"%>
+          </p>
+        </div>
+        <%= render 'items/action' , item: item if logged_in? %>
+      </div>
+    <% end %>
+  </div>
+</div>
